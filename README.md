@@ -6,7 +6,7 @@
 
 Scan MCP servers, AI skills, and npm/pip packages against the [AgentAudit Trust Registry](https://agentaudit.dev) on every push and pull request. Fail builds when risky packages are detected.
 
-[![AgentAudit](https://www.agentaudit.dev/api/badge/agentaudit-github-action)](https://www.agentaudit.dev/skills/agentaudit-github-action)
+[![AgentAudit](https://www.agentaudit.dev/api/badge/agentaudit-github-action)](https://www.agentaudit.dev/packages/agentaudit-github-action)
 [![Trust Registry](https://img.shields.io/badge/Trust_Registry-Live-00C853?style=for-the-badge)](https://agentaudit.dev)
 [![License](https://img.shields.io/badge/License-AGPL_3.0-F9A825?style=for-the-badge)](LICENSE)
 
@@ -153,9 +153,9 @@ The action automatically writes a markdown summary table to your GitHub Actions 
 
 | Package | Rating | Score | Status |
 |---------|--------|-------|--------|
-| [mcp-server-fetch](https://agentaudit.dev/skills/mcp-server-fetch) | ✅ safe | 92 | Pass |
-| [desktop-commander](https://agentaudit.dev/skills/desktop-commander) | ⚠️ caution | 55 | ❌ Exceeds threshold |
-| [unknown-pkg](https://agentaudit.dev/skills/unknown-pkg) | ❓ unknown | -- | ❌ Exceeds threshold |
+| [mcp-server-fetch](https://agentaudit.dev/packages/mcp-server-fetch) | ✅ safe | 92 | Pass |
+| [desktop-commander](https://agentaudit.dev/packages/desktop-commander) | ⚠️ caution | 55 | ❌ Exceeds threshold |
+| [unknown-pkg](https://agentaudit.dev/packages/unknown-pkg) | ❓ unknown | -- | ❌ Exceeds threshold |
 
 This appears in your PR checks and workflow run details, giving reviewers instant visibility into package security.
 
