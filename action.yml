@@ -1,0 +1,35 @@
+name: 'AgentAudit Security Scan'
+description: 'Scan AI agent packages and MCP tools for security risks using AgentAudit'
+author: 'AgentAudit'
+
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  packages:
+    description: 'Comma-separated list of package slugs to check'
+    required: false
+    default: ''
+  scan-config:
+    description: 'Auto-detect packages from package.json/requirements.txt'
+    required: false
+    default: 'false'
+  fail-on:
+    description: 'Risk level threshold to fail the workflow: "unsafe", "caution", or "any"'
+    required: false
+    default: 'unsafe'
+  api-url:
+    description: 'AgentAudit API base URL'
+    required: false
+    default: 'https://www.agentaudit.dev'
+
+outputs:
+  results:
+    description: 'JSON array of scan results'
+  has-issues:
+    description: 'Whether any packages exceeded the fail-on threshold'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

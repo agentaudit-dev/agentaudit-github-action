@@ -1,0 +1,29 @@
+name: Test AgentAudit Scan
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run AgentAudit Security Scan
+        uses: ./
+        with:
+          packages: 'cursor,windsurf,claude-code'
+          fail-on: 'unsafe'
+
+  scan-auto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Auto-detect and Scan
+        uses: ./
+        with:
+          scan-config: 'true'
+          fail-on: 'caution'
