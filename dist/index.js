@@ -27688,19 +27688,26 @@ async function run() {
         continue;
       }
 
-      const rating = (skill.safety_rating || skill.rating || skill.risk_level || 'unknown').toLowerCase();
+      // Derive rating from trust_score + latest_result
+      let rating = (skill.latest_result || 'unknown').toLowerCase();
+      if (rating === 'none' || !['safe', 'caution', 'unsafe'].includes(rating)) {
+        // Fallback: derive from trust_score
+        const trust = skill.trust_score ?? 100;
+        rating = trust >= 80 ? 'safe' : trust >= 50 ? 'caution' : 'unsafe';
+      }
       const exceeds = exceedsThreshold(rating, failOn);
       if (exceeds) hasIssues = true;
 
       results.push({
         slug,
         found: true,
-        name: skill.name || slug,
+        name: skill.display_name || skill.name || slug,
         rating,
+        trust_score: skill.trust_score,
+        total_findings: skill.total_findings || 0,
         description: skill.description || '',
         exceeds,
         url: skill.url || `${apiUrl}/packages/${skill.slug || slug}`,
-        issues: skill.issues || skill.findings || []
       });
     }
 
