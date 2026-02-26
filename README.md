@@ -304,7 +304,7 @@ AgentAudit focuses on AI-specific threats. Pair it with traditional tools for fu
 | 🌐 | [agentaudit.dev](https://agentaudit.dev) | Trust Registry -- browse packages, findings, leaderboard |
 | 📦 | [agentaudit (npm)](https://www.npmjs.com/package/agentaudit) | CLI + MCP Server -- `npx agentaudit audit <url>` |
 | 🛡️ | [agentaudit-skill](https://github.com/agentaudit-dev/agentaudit-skill) | Agent Skill -- pre-install security gate for Claude Code, Cursor, Windsurf |
-| 📚 | [agentaudit-mcp](https://github.com/agentaudit-dev/agentaudit-mcp) | Source repo for CLI + MCP server |
+| 📚 | [agentaudit-cli](https://github.com/agentaudit-dev/agentaudit-cli) | Source repo for CLI + MCP server |
 
 ---
 
