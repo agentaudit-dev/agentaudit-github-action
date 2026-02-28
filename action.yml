@@ -23,6 +23,14 @@ inputs:
     description: 'AgentAudit API base URL'
     required: false
     default: 'https://www.agentaudit.dev'
+  verify:
+    description: 'Verification pass mode: "self", "cross", or a model name. Empty to skip verification.'
+    required: false
+    default: ''
+  timeout:
+    description: 'Timeout in seconds for the scan. Empty for default.'
+    required: false
+    default: ''
 
 outputs:
   results:

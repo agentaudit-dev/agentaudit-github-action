@@ -85,6 +85,8 @@ async function run() {
       failOn = 'unsafe';
     }
     const scanConfig = core.getInput('scan-config') === 'true';
+    const verify = core.getInput('verify') || '';
+    const timeout = core.getInput('timeout') || '';
     let packageInput = core.getInput('packages') || '';
 
     // Collect package slugs
@@ -104,10 +106,25 @@ async function run() {
       return;
     }
 
+    // Build CLI flags for logging / future CLI invocation
+    const cliFlags = [];
+    if (verify) {
+      cliFlags.push('--verify', verify);
+      core.info(`Verification mode: ${verify}`);
+    }
+    if (timeout) {
+      cliFlags.push('--timeout', timeout);
+      core.info(`Timeout: ${timeout}s`);
+    }
+
     core.info(`Scanning ${slugs.length} packages against AgentAudit...`);
 
     // Fetch all packages from API
-    const endpoint = `${apiUrl}/api/packages`;
+    const queryParams = new URLSearchParams();
+    if (verify) queryParams.set('verify', verify);
+    if (timeout) queryParams.set('timeout', timeout);
+    const qs = queryParams.toString();
+    const endpoint = `${apiUrl}/api/packages${qs ? '?' + qs : ''}`;
     core.info(`Fetching packages from ${endpoint}`);
     const response = await httpsGet(endpoint);
     
